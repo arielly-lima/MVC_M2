@@ -1,21 +1,23 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const routes = require('./routes');
+const alunosRoutes = require('./routes/alunos');
+const bodyParser = require('body-parser');
+require('dotenv').config();
 
-// Configura o mecanismo de views para EJS
 app.set('view engine', 'ejs');
-
-// Define onde ficam as views
 app.set('views', path.join(__dirname, 'views'));
 
-// Define a pasta pública com CSS e outros arquivos estáticos
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
-// Usa o arquivo de rotas
-app.use('/', routes);
+app.use('/alunos', alunosRoutes);
 
-// Inicia o servidor na porta 3000
-app.listen(3000, () => {
-  console.log('Servidor rodando em http://localhost:3000');
+app.get('/', (req, res) => {
+  res.redirect('/alunos');
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
