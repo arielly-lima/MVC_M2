@@ -11,10 +11,21 @@
     <input name="nome" placeholder="Nome" required>
     <input name="email" placeholder="Email" required>
     <button type="submit">Adicionar</button>
+
+  <!-- insere o curso -->
+   
+<select name="curso_id">
+  <option value="">Selecione um curso</option>
+  <% cursos.forEach(curso => { %>
+    <option value="<%= curso.id %>"><%= curso.nome %></option>
+  <% }) %>
+</select>
+
+
   </form>
 
   <hr>
-
+</form>
   <ul>
     <% alunos.forEach(aluno => { %>
       <li>
@@ -25,6 +36,8 @@
           <button type="submit">Editar</button>
         </form>
         <form action="/alunos/delete/<%= aluno.id %>" method="POST" style="display:inline">
+
+          
           <button type="submit">Apagar</button>
         </form>
       </li>
@@ -32,3 +45,8 @@
   </ul>
 </body>
 </html>
+
+<h2>Cadastrar novo curso</h2>
+<form action="/cursos" method="POST">
+  <input name="nome" placeholder="Nome do curso" required>
+  <button type="submit">Adicionar Curso</button>

@@ -8,3 +8,5 @@ router.post('/edit/:id', controller.update);
 router.post('/delete/:id', controller.destroy);
 
 module.exports = router;
+
+router.get('/curso/:curso_id', controller.byCurso);
