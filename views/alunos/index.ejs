@@ -7,25 +7,25 @@
 <body>
   <h1>Cadastro de Alunos</h1>
 
+  <!-- Formulário para adicionar aluno -->
   <form action="/alunos" method="POST">
     <input name="nome" placeholder="Nome" required>
     <input name="email" placeholder="Email" required>
-    <button type="submit">Adicionar</button>
 
-  <!-- insere o curso -->
-   
-<select name="curso_id">
-  <option value="">Selecione um curso</option>
-  <% cursos.forEach(curso => { %>
-    <option value="<%= curso.id %>"><%= curso.nome %></option>
-  <% }) %>
-</select>
+    <!-- Seleção de curso -->
+    <select name="curso_id" required>
+      <option value="">Selecione um curso</option>
+      <% cursos.forEach(curso => { %>
+        <option value="<%= curso.id %>"><%= curso.nome %></option>
+      <% }) %>
+    </select>
 
-
+    <button type="submit">Adicionar Aluno</button>
   </form>
 
   <hr>
-</form>
+
+  <!-- Lista de alunos -->
   <ul>
     <% alunos.forEach(aluno => { %>
       <li>
@@ -36,17 +36,37 @@
           <button type="submit">Editar</button>
         </form>
         <form action="/alunos/delete/<%= aluno.id %>" method="POST" style="display:inline">
-
-          
           <button type="submit">Apagar</button>
         </form>
       </li>
     <% }) %>
   </ul>
+
+  <hr>
+
+  <h2>Cursos</h2>
+
+  <!-- Formulário para adicionar novo curso -->
+  <form action="/cursos" method="POST" style="margin-bottom: 1rem;">
+    <input name="nome" placeholder="Nome do curso" required>
+    <button type="submit">Adicionar Curso</button>
+  </form>
+<!-- Lista de cursos com formulários de edição e exclusão -->
+<ul>
+  <% cursos.forEach(curso => { %>
+    <li>
+      <form action="/cursos/edit/<%= curso.id %>" method="POST" style="display:inline;">
+        <input name="nome" value="<%= curso.nome %>" required>
+        <button type="submit">✏️</button>
+      </form>
+
+      <form action="/cursos/delete/<%= curso.id %>" method="POST" style="display:inline;">
+        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?')">🗑️</button>
+      </form>
+    </li>
+  <% }) %>
+</ul>
+
+
 </body>
 </html>
-
-<h2>Cadastrar novo curso</h2>
-<form action="/cursos" method="POST">
-  <input name="nome" placeholder="Nome do curso" required>
-  <button type="submit">Adicionar Curso</button>

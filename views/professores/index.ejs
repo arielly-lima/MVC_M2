@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Professores</title>
+</head>
+<body>
+  <h1>Cadastro de Professores</h1>
+
+  <!-- Formulário para adicionar professor -->
+  <form action="/professores" method="POST">
+    <input name="nome" placeholder="Nome do professor" required>
+    <input name="email" placeholder="Email do professor" required>
+    <button type="submit">Adicionar</button>
+  </form>
+
+  <hr>
+
+  <h2>Lista de Professores</h2>
+  <% professores.forEach(prof => { %>
+    <!-- Editar professor -->
+    <form action="/professores/edit/<%= prof.id %>" method="POST" style="display:inline;">
+      <input name="nome" value="<%= prof.nome %>" required>
+      <input name="email" value="<%= prof.email %>" required>
+      <button type="submit">✏️</button>
+    </form>
+
+    <!-- Deletar professor -->
+    <form action="/professores/delete/<%= prof.id %>" method="POST" style="display:inline;">
+      <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?')">🗑️</button>
+    </form>
+    <br>
+  <% }) %>
+</body>
+</html>
