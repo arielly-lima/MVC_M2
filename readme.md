@@ -1,4 +1,15 @@
-# Boilerplate MVC em Node.js com PostgreSQL
+# Funcionamento da estrutura MVC
+## Models
+O model é responsável por interagir com o banco de dados utilizado. Ele que será responsável por executar as operações de CRUD (Create, Read, Update, Delete), além de consultas SQL, como joins e filtros. Os models fazem parte do backend e não tem contato com o usuário ou interface. 
+
+## Controller
+O controller é responsável por se comunicar com o model e a view, através de funções que se comunicam com o model para executar a ação no view. Ele recebe as requisições das rotas (endpoints), processa os dados (com ajuda dos models) e define o que será exibido ou feito em seguida. 
+
+## Endpoints
+Os endpoints estão presentes nas rotas (routes) e indicam quais URLs a aplicação responde e qual função do controller será chamada para cada tipo de requisição.
+Eles são usados para enviar as ações do usuário ao controller, que então executa a lógica necessária e retorna a resposta para a View.
+
+### Estrutura boilerplate MVC em Node.js com PostgreSQL
 
 Este projeto é um boilerplate básico para uma aplicação Node.js seguindo o padrão MVC (Model-View-Controller), utilizando PostgreSQL como banco de dados.
 
