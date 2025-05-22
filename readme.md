@@ -9,6 +9,23 @@ O controller é responsável por se comunicar com o model e a view, através de 
 Os endpoints estão presentes nas rotas (routes) e indicam quais URLs a aplicação responde e qual função do controller será chamada para cada tipo de requisição.
 Eles são usados para enviar as ações do usuário ao controller, que então executa a lógica necessária e retorna a resposta para a View.
 
+## 🧠 Perguntas para medir aprendizado (responder neste README) - Aula_6
+
+**Explique com suas palavras o papel de cada camada da arquitetura MVC usada neste projeto.
+Como o Model, o Controller e a View interagem entre si?**
+Resumidamente, o o view é a parte que se comunica com o usuário e, quando o usuário realiza alguma ação, uma requisição é acionada, chamando o controller (existe controller para aluno, curso e professores). Dessa forma, o controller envia as requisições CRUD do HTML, ao banco de dados, através do model.
+
+**Como ocorre o envio e o recebimento de dados no formato JSON neste projeto?
+Cite uma rota que responde em JSON e explique seu funcionamento.**
+O JSON está presente no ejs (html) e é responsável por conectar a requisição ao view. Ele está presente no index.ejs, executando metodos como o de deletar alunos, com o metodo "POST".
+
+**Qual a importância de usar HTML básico com formulários e tabelas para organizar e manipular dados no navegador?**
+Os formulários e tabelas são importantes para criar interfaces organizadas, permitindo a coleta, exibição e manipulação de dados de forma clara e funcional, essencial em sistemas como cadastros e pesquisas.
+
+**Por que esse tipo de estrutura ainda é útil em projetos back-end com Node.js?**
+Pois apartir do MVC é possível organizar os arquivos e pastas em uma estrutura organizada que relaciona os elementos de forma que eles interagem entre si através de requisições, podendo ser executadas através do node.
+Separando responsabilidades entre dados (Model), interface (View) e lógica de controle (Controller), o que facilita a manutenção e integração do sistema.
+
 ### Estrutura boilerplate MVC em Node.js com PostgreSQL
 
 Este projeto é um boilerplate básico para uma aplicação Node.js seguindo o padrão MVC (Model-View-Controller), utilizando PostgreSQL como banco de dados.

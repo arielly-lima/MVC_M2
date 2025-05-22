@@ -10,8 +10,20 @@ module.exports = {
     return db.query(query, values);
   },
 
-  async findAll() {
-    const result = await db.query('SELECT * FROM aluno ORDER BY id ASC');
+  async findAllComCurso() {
+    const query = `
+      SELECT aluno.id, aluno.nome, aluno.email, curso.nome AS curso
+      FROM aluno
+      LEFT JOIN curso ON aluno.curso_id = curso.id
+      ORDER BY aluno.id ASC
+    `;
+    const result = await db.query(query);
+    return result.rows;
+  },
+
+  async findByCurso(curso_id) {
+    const query = 'SELECT aluno.id, aluno.nome, aluno.email FROM aluno WHERE curso_id = $1 ORDER BY nome ASC';
+    const result = await db.query(query, [curso_id]);
     return result.rows;
   },
 
@@ -24,30 +36,7 @@ module.exports = {
   async delete(id) {
     const query = 'DELETE FROM aluno WHERE id = $1';
     return db.query(query, [id]);
-  },
-
-  async findByCurso(curso_id) {
-    const query = `
-      SELECT aluno.id, aluno.nome, aluno.email
-      FROM aluno
-      WHERE curso_id = $1
-      ORDER BY nome ASC
-    `;
-    const result = await db.query(query, [curso_id]);
-    return result.rows;
-  },
-
-  async findAllComCurso() {
-    const query = `
-      SELECT aluno.id, aluno.nome, aluno.email, curso.nome AS curso
-      FROM aluno
-      LEFT JOIN curso ON aluno.curso_id = curso.id
-      ORDER BY aluno.id ASC
-    `;
-    const result = await db.query(query);
-    return result.rows;
   }
 };
-
 ///=============================///
 /* Posso criar mais ações aqui, deletar o cusro, por exemplo */
